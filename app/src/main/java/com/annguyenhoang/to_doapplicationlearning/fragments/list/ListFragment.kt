@@ -1,9 +1,10 @@
 package com.annguyenhoang.to_doapplicationlearning.fragments.list
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.annguyenhoang.to_doapplicationlearning.R
@@ -15,6 +16,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
@@ -22,6 +26,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         binding.listLayout.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_updateFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.list_fragment_menu, menu)
     }
 
 }
