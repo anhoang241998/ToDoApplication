@@ -4,13 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(
     entities = [ToDoData::class],
     version = 1,
-    exportSchema = false
+    exportSchema = true
 )
-abstract class ToDoDatabase: RoomDatabase() {
+@TypeConverters(Converter::class)
+abstract class ToDoDatabase : RoomDatabase() {
 
     abstract fun toDoDao(): ToDoDao
 
@@ -20,7 +22,7 @@ abstract class ToDoDatabase: RoomDatabase() {
         @Volatile
         // Nếu có nhiều Thread sử dụng cái instance
         // này nó sẽ sử dụng version mới nhất
-        private var INSTANCE: ToDoDatabase? =null
+        private var INSTANCE: ToDoDatabase? = null
 
         fun getDatabase(context: Context): ToDoDatabase {
             val tempInstance = INSTANCE

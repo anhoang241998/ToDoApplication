@@ -56,10 +56,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     // Room components
-    implementation "androidx.room:room-runtime:2.3.0"
-    kapt "androidx.room:room-compiler:2.3.0"
-    implementation "androidx.room:room-ktx:2.3.0"
-    androidTestImplementation "androidx.room:room-testing:2.3.0"
+    implementation "androidx.room:room-runtime:2.4.0-alpha03"
+    kapt "androidx.room:room-compiler:2.4.0-alpha03"
+    implementation "androidx.room:room-ktx:2.4.0-alpha03"
+    androidTestImplementation "androidx.room:room-testing:2.4.0-alpha03"
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
