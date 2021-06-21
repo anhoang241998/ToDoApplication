@@ -1,6 +1,7 @@
 package com.annguyenhoang.to_doapplicationlearning.data
 
 import androidx.room.TypeConverter
+import com.annguyenhoang.to_doapplicationlearning.data.models.Priority
 
 class Converter {
 

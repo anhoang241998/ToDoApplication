@@ -1,7 +1,8 @@
-package com.annguyenhoang.to_doapplicationlearning.data
+package com.annguyenhoang.to_doapplicationlearning.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.annguyenhoang.to_doapplicationlearning.data.models.Priority
 
 @Entity(tableName = "todo_table")
 data class ToDoData(
