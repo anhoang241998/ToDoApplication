@@ -10,7 +10,7 @@ import com.annguyenhoang.to_doapplicationlearning.data.models.ToDoData
 @Database(
     entities = [ToDoData::class],
     version = 1,
-    exportSchema = true
+    exportSchema = false
 )
 @TypeConverters(Converter::class)
 abstract class ToDoDatabase : RoomDatabase() {
