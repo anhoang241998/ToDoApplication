@@ -26,7 +26,13 @@ class ToDoViewModel(
 
     fun insertData(toDoData: ToDoData) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertDAta(toDoData)
+            repository.insertData(toDoData)
+        }
+    }
+
+    fun updateData(toDoData: ToDoData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateData(toDoData)
         }
     }
 
