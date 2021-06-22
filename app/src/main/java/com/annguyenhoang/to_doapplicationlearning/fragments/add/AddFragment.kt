@@ -26,6 +26,9 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
+        binding.prioritiesSpinner.onItemSelectedListener = mSharedViewModel.listener
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
