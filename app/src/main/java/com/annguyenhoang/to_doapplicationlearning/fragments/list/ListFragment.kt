@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.annguyenhoang.to_doapplicationlearning.R
 import com.annguyenhoang.to_doapplicationlearning.data.viewmodel.ToDoViewModel
 import com.annguyenhoang.to_doapplicationlearning.databinding.FragmentListBinding
+import com.annguyenhoang.to_doapplicationlearning.fragments.SharedViewModel
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
@@ -22,6 +23,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private val adapter: ListAdapter by lazy { ListAdapter() }
     private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,8 +38,23 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
+            mSharedViewModel.checkIfDatabaseEmpty(data)
             adapter.setData(data)
         })
+
+        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, { isEmpty ->
+            showEmptyDataViews(isEmpty)
+        })
+    }
+
+    private fun showEmptyDataViews(emptyDataBase: Boolean) {
+        if (emptyDataBase) {
+            binding.noDataImageView.visibility = View.VISIBLE
+            binding.noDataTextView.visibility = View.VISIBLE
+        } else {
+            binding.noDataImageView.visibility = View.INVISIBLE
+            binding.noDataTextView.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
