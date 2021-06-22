@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.annguyenhoang.to_doapplicationlearning.R
 import com.annguyenhoang.to_doapplicationlearning.data.models.Priority
@@ -33,6 +35,12 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         val currentItem = dataList[position]
         holder.titleTv.text = currentItem.title
         holder.descriptionTv.text = currentItem.description
+        holder.itemView
+            .findViewById<ConstraintLayout>(R.id.row_background).setOnClickListener {
+                val action = ListFragmentDirections
+                    .actionListFragmentToUpdateFragment(currentItem = currentItem)
+                holder.itemView.findNavController().navigate(action)
+            }
 
         when (currentItem.priority) {
             Priority.HIGH -> {
