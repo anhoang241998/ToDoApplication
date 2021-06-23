@@ -30,31 +30,22 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         setHasOptionsMenu(true)
 
-        binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
-        }
+        // Setup RecyclerView
+        setUpRecyclerview()
 
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.lifecycleOwner = this
+        binding.mSharedViewModel = mSharedViewModel
 
+        // Observe live data
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
             adapter.setData(data)
         })
-
-        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, { isEmpty ->
-            showEmptyDataViews(isEmpty)
-        })
     }
 
-    private fun showEmptyDataViews(emptyDataBase: Boolean) {
-        if (emptyDataBase) {
-            binding.noDataImageView.visibility = View.VISIBLE
-            binding.noDataTextView.visibility = View.VISIBLE
-        } else {
-            binding.noDataImageView.visibility = View.INVISIBLE
-            binding.noDataTextView.visibility = View.INVISIBLE
-        }
+    private fun setUpRecyclerview() {
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
